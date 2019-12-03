@@ -1,6 +1,7 @@
-// routes/index.js
-const noteRoutes = require('./note_routes');
-module.exports = function(app, db) {
-  noteRoutes(app, db);
-  // Тут, позже, будут и другие обработчики маршрутов 
-};
+const express = require("express");
+const mainRouter = express.Router();
+const tracks = require("./tracks");
+
+mainRouter.use(tracks);
+
+module.exports = mainRouter;
