@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const artistSchema = mongoose.Schema(
+const artistSchema = new mongoose.Schema(
   {
+    id: {
+      type: ObjectId,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -10,13 +14,9 @@ const artistSchema = mongoose.Schema(
     img: {
       type: String
     }
-  },
-
-  {
-    collection: "artists"
   }
 );
 
-const Artist = mongoose.model("Artist", artistSchema);
+const Artist = mongoose.model("Artist", artistSchema, "artists");
 
 module.exports = Artist;

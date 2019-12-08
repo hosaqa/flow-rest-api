@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const trackSchema = mongoose.Schema(
+const trackSchema = new mongoose.Schema(
   {
     _id: {
       type: ObjectId,
       required: true
     },
     artist: {
-      type: String,
+      type: ObjectId,
+      ref: "Artist",
       required: true
     },
     trackname: {
@@ -23,13 +24,9 @@ const trackSchema = mongoose.Schema(
       type: Number,
       required: true
     }
-  },
-
-  {
-    collection: "tracks"
   }
 );
 
-const Track = mongoose.model("Track", trackSchema);
+const Track = mongoose.model("Track", trackSchema, "tracks");
 
 module.exports = Track;
