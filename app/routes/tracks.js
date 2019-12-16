@@ -6,6 +6,7 @@ const utils = require("../utils");
 router.get("/tracks", (req, res) => {
   const limit = parseFloat(req.query.limit) || null;
   const artist = req.query.artist;
+  const genre = req.query.genre;
 
   const findParams = {};
 
@@ -13,27 +14,33 @@ router.get("/tracks", (req, res) => {
     findParams.artist = artist;
   }
 
+  if (genre) {
+    findParams.genre = genre;
+  }
+
   Track.find(findParams)
     .limit(limit)
     .populate("artist")
+    .populate("genre")
     .exec((err, playlist) => {
       if (err) {
-        res.status(500).send({ message: "Tracks fetching failed!" });
+        res.status(500).send({ message: "Tracks fetching failed." });
       } else {
         const host = req.get("host");
 
-        res.send({
-          name: "all_tracks",
-          playlist: playlist.map(track => {
+        res.send(
+          playlist.map(track => {
             if (track.artist.img) {
               track.artist.img = utils.getAbsolutePath(host, track.artist.img);
             }
+
+            track.genre.img = utils.getAbsolutePath(host, track.genre.img);
 
             track.src = utils.getAbsolutePath(host, track.src);
 
             return track;
           })
-        });
+        );
       }
     });
 });

@@ -17,6 +17,11 @@ const trackSchema = new mongoose.Schema({
   duration: {
     type: Number,
     required: true
+  },
+  genre: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Genre",
+    required: true
   }
 });
 

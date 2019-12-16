@@ -5,7 +5,7 @@ const Artist = require("../models/Artist");
 router.get("/artists", (req, res) => {
   Artist.find({}).exec((err, artists) => {
     if (err) {
-      res.send({ message: "An error has occurred" });
+      res.send({ message: "Artists fetching failed." });
     } else {
       res.send(artists);
     }
