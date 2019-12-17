@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "node ./server.js",
-    "dev": "env-cmd -f ./.env nodemon ./server.js"
+    "start": "node server.js",
+    "dev": "env-cmd -f ./.env nodemon server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
