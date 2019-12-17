@@ -26,7 +26,7 @@ router.get("/tracks", (req, res) => {
       if (err) {
         res.status(500).send({ message: "Tracks fetching failed." });
       } else {
-        const host = req.get("host");
+        const host = `${req.protocol}://${req.get("host")}`;
 
         res.send(
           playlist.map(track => {

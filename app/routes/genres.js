@@ -8,7 +8,7 @@ router.get("/genres", (req, res) => {
     if (err) {
       res.send({ message: "Genres fetching failed." });
     } else {
-      const host = req.get("host");
+      const host = `${req.protocol}://${req.get("host")}`;
 
       res.send(
         genres.map(genreItem => {
