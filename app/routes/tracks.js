@@ -28,8 +28,10 @@ router.get("/tracks", (req, res) => {
       } else {
         const host = `${req.protocol}://${req.get("host")}`;
 
-        res.send(
-          playlist.map(track => {
+        res.send({
+          URL: req.originalUrl,
+          queryParams: findParams,
+          items: playlist.map(track => {
             if (track.artist.img) {
               track.artist.img = utils.getAbsolutePath(host, track.artist.img);
             }
@@ -40,7 +42,7 @@ router.get("/tracks", (req, res) => {
 
             return track;
           })
-        );
+        });
       }
     });
 });
