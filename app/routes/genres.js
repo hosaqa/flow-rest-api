@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Genre = require("../models/Genre");
+const helpers = require("./helpers");
 const utils = require("../utils");
 
 router.get("/genres", (req, res) => {
@@ -18,6 +19,10 @@ router.get("/genres", (req, res) => {
       );
     }
   });
+});
+
+router.get("/genre/:id", (req, res) => {
+  helpers.getPlaylist({req, res, findBy: 'genre'});
 });
 
 module.exports = router;

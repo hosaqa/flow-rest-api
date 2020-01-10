@@ -6,6 +6,9 @@ const getAbsolutePath = (host, relativePath) => {
   }
 };
 
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+
 module.exports = {
-  getAbsolutePath: getAbsolutePath
+  getAbsolutePath: getAbsolutePath,
+  capitalize
 };
