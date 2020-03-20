@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server.js",
+    "start": "env-cmd -f ./.env node server.js",
     "dev": "env-cmd -f ./.env nodemon server.js"
   },
   "dependencies": {
